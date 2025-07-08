@@ -1,12 +1,13 @@
 import RoomCard from '@/components/RoomCard';
 import Heading from '@/components/Heading';
-import rooms from '@/data/rooms.json'
-export default function Home() {
+import getAllHandyman from './actions/getAllHandyman';
+export default async function Home() {
+  const handyman =  await getAllHandyman()
   return (
     <>
     <Heading title='Available Booking' />
-     {rooms.length > 0 ? (
-      rooms.map((room) => <RoomCard room={room} />) ) : (
+     {handyman.length > 0 ? (
+      handyman.map((handymans) => <RoomCard key={handymans.id} handymans={handymans} />) ) : (
         <p>No rooms available at the moment</p>
      )}
     </>
